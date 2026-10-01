@@ -18,8 +18,8 @@ productsRouter.get("/", async (req, res) => {
 });
 
 //get one product by its ID
-productsRouter.get("/:id", async (req, res) => {
-  const id = req.url.id;
+productsRouter.get("/:id",async (req, res) => {
+  const id = req.params.id;
   const product = await db.getById("products", id);
 
   if (!product) {
@@ -27,26 +27,8 @@ productsRouter.get("/:id", async (req, res) => {
       error: "product not found",
     });
   }
-  return res.status(200).json({
-    product: product,
-  });
+  return res.status(200).json({ data: product });
 });
-
-//Create a Product as a (Merchant)
-// productsRouter.post(
-//   "/",
-//   checkAuth,
-//   checkRole("merchant"),
-//   validateBody(productSchema),
-//   async (req, res) => {
-//     const body = req.body;
-//     await db.create("products", body);
-
-//     return res.status(201).json({
-//       message: "product created successfully",
-//     });
-//   },
-// );
 
 productsRouter.post(
   "/",
@@ -63,15 +45,13 @@ productsRouter.post(
   },
 );
 
-
-
-//Update a Product as a (Merchant)
+// Update a Product as a (Merchant)
 productsRouter.patch(
   "/:id",
   checkRole("merchant"),
   validateBody(productSchema),
   async (req, res) => {
-    const id = req.params.search;
+    const id = req.params.id;
     const product = await db.getById("products", id);
 
     if (!product) {
@@ -90,19 +70,46 @@ productsRouter.patch(
   },
 );
 
-productsRouter.delete("/:id", checkAuth, checkRole(), async (req, res) => {
-  const id = req.params.id;
-  const product = await db.getById("products", id);
+productsRouter.patch(
+  "/:id",
+  checkAuth,
+  checkRole("merchant"),
+  validateBody(productSchema),
+  async (req, res) => {
+    const id = req.params.id;
+    const product = await db.getById("products", id);
 
-  if (!product) {
-    return res.status(404).json({
-      error: "Product Not Found",
+    if (!product) {
+      return res.status(404).json({ error: "product not found" });
+    }
+
+    const updated = await db.update("products", id, req.body);
+
+    return res.status(200).json({
+      message: "product updated successfully",
+      data: updated,
     });
   }
+);
 
-  await db.delete("products", id);
+productsRouter.delete(
+  "/:id",
+  checkAuth,
+  checkRole("merchant"),
+  async (req, res) => {
+    const id = req.params.id;
+    const product = await db.getById("products", id);
 
-  res.status(204).json({
-    message: "Product Deleted Successfully",
-  });
-});
+    if (!product) {
+      return res.status(404).json({
+        error: "Product Not Found",
+      });
+    }
+
+    await db.delete("products", id);
+
+    res.status(204).json({
+      message: "Product Deleted Successfully",
+    });
+  },
+);
