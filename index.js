@@ -20,18 +20,18 @@ app.use((req, res, next) => {
 
 //------------Routes---------------
 app.use("/auth", authRouter);
-app.use("/api/products", productsRouter);
+app.use("/api/products", checkAuth,productsRouter);
 app.use("/api/cart", checkAuth, cartRouter);
-app.use("/api/orders",checkAuth ,ordersRouter);
+app.use("/api/orders", checkAuth, ordersRouter);
+app.use(pagesRouter);
 //---------------------------------
-  
+
 //HTML Pages
 app.use(express.static("pages"));
-app.use(pagesRouter);
 
 //------------Error Handler-----------
 app.use((err, req, res, next) => {
-  console.error(err.err);
+  console.error(err);
   res.status(500).json({ error: "Something Went Wrong" });
 });
 //------------------------------------
