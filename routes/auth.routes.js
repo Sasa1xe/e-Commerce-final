@@ -88,28 +88,6 @@ authRouter.post("/login", validateBody(loginSchema), async (req, res) => {
       .status(200)
       .json({ message: "login successful", data: { user: payload } });
   }
-
-  if (user && bcrypt.compareSync(password, user.password)) {
-    const payload = {
-      id: user.id,
-      email: user.email,
-      username: user.username,
-      role: user.role,
-    };
-
-    const node_api_token = jwt.sign(payload, process.env.JWT_SECRET, {
-      expiresIn: "1h",
-    });
-
-    res.cookie("node_api_token", node_api_token, {
-      httpOnly: true,
-      sameSite: "lax",
-      maxAge: 60 * 60 * 1000,
-    });
-
-    return res.status(200).json({ message: "login successful", payload });
-  }
-
   return res.status(422).json({
     error: "email or password are invalid",
   });
