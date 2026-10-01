@@ -1,7 +1,7 @@
 export function checkRole(...roles) {
   return (req, res, next) => {
     /// check current authed user
-    const user = req.current_user;
+    const user = req.user;
 
     /// check user role
     const current_role = user.role;
