@@ -8,13 +8,15 @@ export const ordersRouter = express.Router();
 const db = createDB();
 
 // GET / — list only this user's orders (filter out everyone else's)
-ordersRouter.get("/", checkRole("customer"),async(req, res) => {
-  const orders = await db.getAll("orders").filter((o) => o.userId === req.user.id);
+ordersRouter.get("/", checkRole("customer"), async (req, res) => {
+  const orders = (await db.getAll("orders")).filter(
+    (o) => o.userId === req.user.id,
+  );
   res.status(200).json({ data: orders });
 });
 
 // POST /checkout — turn current cart into an order, then empty the cart
-ordersRouter.post("/checkout",checkRole("customer"),async (req, res) => {
+ordersRouter.post("/checkout", checkRole("customer"), async (req, res) => {
   const cart = await db.getOne("carts", { userId: req.user.id });
 
   // nothing to check out — block early
@@ -22,7 +24,7 @@ ordersRouter.post("/checkout",checkRole("customer"),async (req, res) => {
     return res.status(422).json({ error: "cart is empty" });
   }
 
-  // sum price*quantity across all cart items → order total
+  // sum price*quantity across all cart itemxs → order total
   const total = cart.products.reduce((sum, p) => sum + p.price * p.quantity, 0);
 
   // snapshot cart contents into a new order row
