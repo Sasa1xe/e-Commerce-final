@@ -1,1 +1,60 @@
-{"auth_users":[{"email":"mostafa@gmai.com","password":"$2b$10$VHhWoHJ7s1.J28D7QvCs2eniZSqWSIVbnQGMiQwHr.LW7wZ28IK9S","role":"customer","id":"4407965"},{"email":"mostafa@gmail.com","username":"sasa","password":"$2b$10$OlOXMagVhlem117CkpdfweJBaqB6fIyQyiLGtyD225iSxQV0iZl8G","role":"customer","id":"1587185"},{"email":"mustafa@gmail.com","username":"sasa","password":"$2b$10$89j0iK1JZQcrIpN4RGrW9epqdzVmwc08WuE8hmq4V2/.n49xU4x7G","role":"customer","id":"5100244"},{"email":"mostafaa@gmail.com","username":"sasa","password":"$2b$10$2Fwh99ZdJMCAtXXU7uvk0O5PoUNv4ucWry2iRimTo8pgEX6pZwuwC","role":"merchant","id":"5193908"}],"products":[{"name":"gaming PC","description":"RTX 5090 \n32gb RAM","price":2000,"image":"https://m.media-amazon.com/images/I/71vqBRAbofL._AC_UF894,1000_QL80_.jpg","id":"1920892"}],"carts":[{"userId":"1587185","products":[],"id":"571958"}],"orders":[{"userId":"1587185","products":[{"id":"1920892","name":"gaming PC","description":"RTX 5090 \n32gb RAM","price":2000,"image":"https://m.media-amazon.com/images/I/71vqBRAbofL._AC_UF894,1000_QL80_.jpg","quantity":5}],"total":10000,"status":"pending","createdAt":"2026-10-09T16:34:52.267Z","id":"5046825"}]}
+{
+  "auth_users": [
+    {
+      "email": "mostafa@gmai.com",
+      "password": "$2b$10$VHhWoHJ7s1.J28D7QvCs2eniZSqWSIVbnQGMiQwHr.LW7wZ28IK9S",
+      "role": "customer",
+      "id": "4407965"
+    },
+    {
+      "email": "mostafa@gmail.com",
+      "username": "sasa",
+      "password": "$2b$10$OlOXMagVhlem117CkpdfweJBaqB6fIyQyiLGtyD225iSxQV0iZl8G",
+      "role": "customer",
+      "id": "1587185"
+    },
+    {
+      "email": "mustafa@gmail.com",
+      "username": "sasa",
+      "password": "$2b$10$89j0iK1JZQcrIpN4RGrW9epqdzVmwc08WuE8hmq4V2/.n49xU4x7G",
+      "role": "customer",
+      "id": "5100244"
+    },
+    {
+      "email": "mostafaa@gmail.com",
+      "username": "sasa",
+      "password": "$2b$10$2Fwh99ZdJMCAtXXU7uvk0O5PoUNv4ucWry2iRimTo8pgEX6pZwuwC",
+      "role": "merchant",
+      "id": "5193908"
+    }
+  ],
+  "products": [
+    {
+      "name": "gaming PC",
+      "description": "RTX 5090 \n32gb RAM",
+      "price": 2000,
+      "image": "https://m.media-amazon.com/images/I/71vqBRAbofL._AC_UF894,1000_QL80_.jpg",
+      "id": "1920892"
+    }
+  ],
+  "carts": [{ "userId": "1587185", "products": [], "id": "571958" }],
+  "orders": [
+    {
+      "userId": "1587185",
+      "products": [
+        {
+          "id": "1920892",
+          "name": "gaming PC",
+          "description": "RTX 5090 \n32gb RAM",
+          "price": 2000,
+          "image": "https://m.media-amazon.com/images/I/71vqBRAbofL._AC_UF894,1000_QL80_.jpg",
+          "quantity": 5
+        }
+      ],
+      "total": 10000,
+      "status": "pending",
+      "createdAt": "2026-10-09T16:34:52.267Z",
+      "id": "5046825"
+    }
+  ]
+}
